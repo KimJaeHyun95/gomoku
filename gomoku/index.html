@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </head>
+    <body>
+        <div class="grid" style="">
+            <div>
+                <canvas id="board" class="game-board" width="800" height="800">
+            </div>
+            <div>
+                <table>
+                    <tr style="height: 80px;">
+                        <td>
+                            GOMOKU!!<br><br>
+                            YOU CAN SEE THE RULES <a href="https://en.wikipedia.org/wiki/Gomoku">HERE</a>.<br>
+                            YOU CAN USE <br>
+                            ARROWS KEYS TO MOVE POINT.<br>
+                            SPACE KEY TO PUT YOUR GO STONE.
+                        </td>
+                    </tr>
+                    <tr style="height: 480px;">
+                        <td>
+                            <div>turn</div>
+                            <canvas id="circle" width="100" height="100">
+                        </td>
+                    </tr>
+                    <tr style="height: 200px;">
+                        <td>
+                            <a href="javascript:sound_e()">
+                                Sound effect : <span id="sound_e_on">🔉 on</span>
+                                <span id="sound_e_off">🔇 off</span>
+                            </a>
+                            <br>
+                            <a href="javascript:sound_b()">
+                                Background sound : <span id="sound_b_on">🔉 on</span>
+                                <span id="sound_b_off">🔇 off</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="play-btn" onclick="play()">Play</button>
+                            <button id="before-btn" onclick="before()" class="button">Before</button>
+                            <button id="surrender-btn" onclick="decideWinner()" class="button">Surrender</button>
+                            <button id="reset-btn" onclick="reset()" class="button">Reset</button>
+                        </td>
+                    </tr>
+                </table>
+               
+                
+            </div>
+        </div>
+        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="sound.js"></script>
+    </body>
+</html>

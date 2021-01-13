@@ -1,0 +1,43 @@
+* {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 850px 600px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.game-board {
+  border: solid 2px;
+}
+
+.button{
+  display:none
+}
+
+#play-btn, .button{
+  font-size: 10pt;
+}
+
+#sound_e_on{
+  display:inline;
+  text-decoration: none;
+}
+
+#sound_e_off{
+  display:none;
+  text-decoration: none;
+}
+
+#sound_b_on{
+  display:inline;
+  text-decoration: none;
+}
+
+#sound_b_off{
+  display:none;
+  text-decoration: none;
+}
