@@ -1,4 +1,4 @@
-let audio = new Audio('put.wav');
+const audio = new Audio('put.wav');
 audio.volume = 0.05;
 const bgm = new Audio('bgm.mp3');
 bgm.volume = 0.1;
