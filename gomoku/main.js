@@ -43,11 +43,16 @@ function play(){
 }
 
 function before(){
+    if(count==0){
+        return;
+    }
     if(turn){
+        count--;
         turn=false;
         board.grid[his_x.pop()][his_y.pop()]=0;
         draw();
     }else{
+        count--;
         turn=true;
         board.grid[his_x.pop()][his_y.pop()]=0;
         draw();
@@ -145,8 +150,53 @@ function put(){
         turn=true;
     }
     audio.play();
+    count++;
     his_x.push(x);
     his_y.push(y);
+}
+
+function cantdo(){
+    for(let i=-1; i<2;i++){
+        for(let j=-1; j<2;j++){
+            if(i==0 && j==0){
+                continue;
+            }
+            if(board.grid[x][y]==board.grid[x+1*i][y+1*j] && board.grid[x][y]==board.grid[x+2*i][y+2*j] && 0 == board.grid[x-i][y-j] && 0 ==board.grid[x+3*i][y+3*j]){
+                for(let k=-1; k<2;k++){
+                    for(let l=-1; l<2;l++){
+                        if(i==0 && j==0){
+                            continue;
+                        }
+                        if(i==k && j==l){
+                            continue;
+                        }
+                        if(board.grid[x][y]==board.grid[x+1*k][y+1*l] && board.grid[x][y]==board.grid[x+2*k][y+2*l] && 0 == board.grid[x-k][y-l] && 0 ==board.grid[x+3*k][y+3*l]){
+                            alert("그 자리에는 둘 수 없습니다.");
+                            before();
+                            return;
+                        }
+                    }
+                }
+            }
+            if(board.grid[x][y]==board.grid[x+1*i][y+1*j]  && board.grid[x][y]==board.grid[x-i][y-j] && 0==board.grid[x-2*i][y-2*j] && 0 ==board.grid[x+2*i][y+2*j]){
+                for(let k=-1; k<2;k++){
+                    for(let l=-1; l<2;l++){
+                        if(i==0 && j==0){
+                            continue;
+                        }
+                        if(i==k && j==l){
+                            continue;
+                        }
+                        if(board.grid[x][y]==board.grid[x+1*k][y+1*l] && board.grid[x][y]==board.grid[x+2*k][y+2*l] && 0 == board.grid[x-k][y-l] && 0 ==board.grid[x+3*k][y+3*l]){
+                            alert("그 자리에는 둘 수 없습니다.");
+                            before();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 function isGAMEOVER(){
@@ -164,6 +214,15 @@ function isGAMEOVER(){
             if(board.grid[x][y]==board.grid[x+i][y+j] && board.grid[x][y]==board.grid[x+2*i][y+2*j] && board.grid[x][y]==board.grid[x+3*i][y+3*j] && board.grid[x][y]==board.grid[x-i][y-j]&& board.grid[x][y]==board.grid[x-2*i][y-2*j]){
                 continue;
             }
+            if(board.grid[x][y]==board.grid[x-i][y-j] && board.grid[x][y]==board.grid[x-2*i][y-2*j] && board.grid[x][y]==board.grid[x-3*i][y-3*j] && board.grid[x][y]==board.grid[x-4*i][y-4*j]&& board.grid[x][y]==board.grid[x-5*i][y-5*j]){
+                continue;
+            }
+            if(board.grid[x][y]==board.grid[x-i][y-j] && board.grid[x][y]==board.grid[x-2*i][y-2*j] && board.grid[x][y]==board.grid[x-3*i][y-3*j] && board.grid[x][y]==board.grid[x-4*i][y-4*j]&& board.grid[x][y]==board.grid[x+i][y+j]){
+                continue;
+            }
+            if(board.grid[x][y]==board.grid[x-i][y-j] && board.grid[x][y]==board.grid[x-2*i][y-2*j] && board.grid[x][y]==board.grid[x-3*i][y-3*j] && board.grid[x][y]==board.grid[x+i][y+j]&& board.grid[x][y]==board.grid[x+2*i][y+2*j]){
+                continue;
+            }
             if(board.grid[x][y]==board.grid[x+1*i][y+1*j] && board.grid[x][y]==board.grid[x+2*i][y+2*j] && board.grid[x][y]==board.grid[x+3*i][y+3*j] && board.grid[x][y]==board.grid[x+4*i][y+4*j]){
                 decideWinner();
                 continue;
@@ -178,8 +237,6 @@ function isGAMEOVER(){
             }
         }
     }
-    
-    
 }
 
 
@@ -217,6 +274,7 @@ window.addEventListener('keydown', event => {
         }
         put();
         draw();
+        cantdo();
         isGAMEOVER();
     }
 })
